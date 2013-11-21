@@ -1,8 +1,8 @@
 <?php
-/*
-function xoops_module_install_模組目錄(&$module) {
 
-	mk_dir(XOOPS_ROOT_PATH."/uploads/模組目錄");
+function xoops_module_install_myFlickr(&$module) {
+
+	mk_dir(XOOPS_ROOT_PATH."/uploads/myflickr_cache");
 
 	return true;
 }
@@ -18,5 +18,5 @@ function mk_dir($dir=""){
         mkdir($dir, 0777);
     }
 }
-*/
+
 ?>

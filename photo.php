@@ -10,7 +10,7 @@ function show_photo($photoset_id,$page){
   require_once "class/phpFlickr/phpFlickr.php";
 
   $f = new phpFlickr($xoopsModuleConfig['key']);
-  $f->enableCache("fs", "../uploads/myflickr_cache");
+  $f->enableCache("fs", XOOPS_ROOT_PATH."/uploads/myflickr_cache");
 
   //$user_id=$xoopsModuleConfig['xflickr_userid'];
   $per_page=$xoopsModuleConfig['number'];

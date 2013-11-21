@@ -1,10 +1,10 @@
 <?php
-/*
-function xoops_module_uninstall_模組目錄(&$module) {
+
+function xoops_module_uninstall_myFlickr(&$module) {
   GLOBAL $xoopsDB;
 	$date=date("Ymd");
 
- 	rename(XOOPS_ROOT_PATH."/uploads/模組目錄",XOOPS_ROOT_PATH."/uploads/模組目錄_bak_{$date}");
+ 	rename(XOOPS_ROOT_PATH."/uploads/myflickr_cache",XOOPS_ROOT_PATH."/uploads/myflickr_cache_bak_{$date}");
 
 	return true;
 }
@@ -51,5 +51,5 @@ function full_copy( $source="", $target=""){
 		copy( $source, $target );
 	}
 }
-*/
+
 ?>

@@ -55,9 +55,9 @@ $modversion['hasMain'] = 1;
 
 
 //---模組自動功能---//
-//$modversion['onInstall'] = "include/install.php";
-//$modversion['onUpdate'] = "include/update.php";
-//$modversion['onUninstall'] = "include/onUninstall.php";
+$modversion['onInstall'] = "include/onInstall.php";
+$modversion['onUpdate'] = "include/onUpdate.php";
+$modversion['onUninstall'] = "include/onUninstall.php";
 
 
 //---偏好設定---//
