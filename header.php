@@ -24,7 +24,7 @@ if ($xoopsUser) {
 $interface_menu[_MD_MYFLICK_SMNAME1]="index.php";
 $interface_menu[_MD_MYFLICK_SMNAME2]="sets.php";
 $interface_menu[_MD_MYFLICK_SMNAME3]="collections.php";
-$interface_menu[_MD_MYFLICK_SMNAME4]="favorite.php";
+$interface_menu[_MD_MYFLICK_SMNAME4]="favorites.php";
 
 
 if($isAdmin){
