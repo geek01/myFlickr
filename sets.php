@@ -16,6 +16,9 @@ function show_all_sets($page){
   $per_page=$xoopsModuleConfig['number'];
 
     $sets=$f->photosets_getList($user_id, NULL, $per_page, $page);
+    if ($f->getErrorCode() != NULL) {
+      return "<div class='alert alert-error'>".$f->getErrorMsg()."</div>";
+    }
     $pages = $sets['pages'];
     $total = $sets['total'];
     $perpage = $sets['perpage'];
@@ -63,11 +66,11 @@ function show_all_sets($page){
     }
 
     if(($page - $pLimit) > 1){
-      $back_mr = "<li class='disabled'><a href='javascript: void(0)'>...</a></li>";
+      $back_mr = "<li class='disabled'><a>...</a></li>";
     }
 
     if(($page + $pLimit) < $pTotal){
-      $next_mr = "<li class='disabled'><a href='javascript: void(0)'>...</a></li>";
+      $next_mr = "<li class='disabled'><a>...</a></li>";
     }
 
     $pagenation="

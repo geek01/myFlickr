@@ -15,6 +15,9 @@ function show_collection_album($collection_id=""){
   $user_id=$xoopsModuleConfig['userid'];
 
   $collections = $f->collections_getTree($collection_id,$user_id);
+  if ($f->getErrorCode() != NULL) {
+    return "<div class='alert alert-error'>".$f->getErrorMsg()."</div>";
+  }
 
   $photoColData = "";
     foreach($collections['collections']['collection'] as $collection)
@@ -46,6 +49,9 @@ function show_collection_sets($collection_id){
   $user_id=$xoopsModuleConfig['userid'];
 
   $collections = $f->collections_getTree($collection_id,$user_id);
+  if ($f->getErrorCode() != NULL) {
+    return "<div class='alert alert-error'>".$f->getErrorMsg()."</div>";
+  }
 
   $photoSetData = "";
     foreach($collections['collections']['collection'] as $collection)

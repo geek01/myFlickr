@@ -16,6 +16,9 @@ function show_public_photo($page){
 	$per_page=$xoopsModuleConfig['number'];
 
     $photos = $f->people_getPublicPhotos($user_id, NULL, 'original_format', $per_page ,$page);
+    if ($f->getErrorCode() != NULL) {
+      return "<div class='alert alert-error'>".$f->getErrorMsg()."</div>";
+    }
     $pages = $photos['photos']['pages'];
     $total = $photos['photos']['total'];
     $perpage = $photos['photos']['perpage'];
@@ -41,7 +44,7 @@ function show_public_photo($page){
     $next = $page + 1;
 
     if($page > 1) {
-      $back_pr = "<li><a href='?page=$back'>&laquo; "._MD_MYFLICK_PREVPAGE."</a></li>";
+      $back_pr = "<li><a href='?page={$back}'>&laquo; "._MD_MYFLICK_PREVPAGE."</a></li>";
     }else{
       $back_pr = "<li class='disabled'><a href='javascript: void(0)'>&laquo; "._MD_MYFLICK_PREVPAGE."</a></li>";
     }
@@ -57,17 +60,17 @@ function show_public_photo($page){
     
 
     if($page != $pages) {
-      $next_pr = "<li><a href='?page=$next'>"._MD_MYFLICK_NEXTPAGE." &raquo;</a></li>";
+      $next_pr = "<li><a href='?page={$next}'>"._MD_MYFLICK_NEXTPAGE." &raquo;</a></li>";
     }else{
       $next_pr = "<li class='disabled'><a href='javascript: void(0)'>"._MD_MYFLICK_NEXTPAGE." &raquo;</a></li>";
     }
 
     if(($page - $pLimit) > 1){
-      $back_mr = "<li class='disabled'><a href='javascript: void(0)'>...</a></li>";
+      $back_mr = "<li class='disabled'><a>...</a></li>";
     }
 
     if(($page + $pLimit) < $pTotal){
-      $next_mr = "<li class='disabled'><a href='javascript: void(0)'>...</a></li>";
+      $next_mr = "<li class='disabled'><a>...</a></li>";
     }
 
     $pagenation="

@@ -17,6 +17,9 @@ function show_photo($photoset_id,$page){
 
     $photos = $f->photosets_getPhotos($photoset_id, 'original_format', NULL, $per_page, $page);
     $info = $f->photosets_getInfo($photoset_id);
+    if ($f->getErrorCode() != NULL) {
+      return "<div class='alert alert-error'>".$f->getErrorMsg()."</div>";
+    }
     $pages = $photos['photoset']['pages'];
     $total = $photos['photoset']['total'];
     $perpage = $photos['photoset']['perpage'];
@@ -63,11 +66,11 @@ function show_photo($photoset_id,$page){
     }
 
     if(($page - $pLimit) > 1){
-      $back_mr = "<li class='disabled'><a href='javascript: void(0)'>...</a></li>";
+      $back_mr = "<li class='disabled'><a>...</a></li>";
     }
 
     if(($page + $pLimit) < $pTotal){
-      $next_mr = "<li class='disabled'><a href='javascript: void(0)'>...</a></li>";
+      $next_mr = "<li class='disabled'><a>...</a></li>";
     }
 
     //$pagecount="<li class='disabled'><a href='javascript: void(0)'>共{$pTotal}頁，第{$page}頁</a></li>";
