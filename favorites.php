@@ -84,14 +84,14 @@ function show_favorite_photo($page){
 
     $main="
     $jquery
-    <script type='text/javascript' src='".XOOPS_URL."/modules/tadtools/fancybox/lib/jquery.mousewheel-3.0.6.pack.js'></script>
-    <link rel='stylesheet' href='".XOOPS_URL."/modules/tadtools/fancybox/source/jquery.fancybox.css' type='text/css' media='screen' />
-    <script type='text/javascript' src='".XOOPS_URL."/modules/tadtools/fancybox/source/jquery.fancybox.pack.js'></script>
-    <link rel='stylesheet' href='".XOOPS_URL."/modules/tadtools/fancybox/source/helpers/jquery.fancybox-buttons.css' type='text/css' media='screen' />
-    <script type='text/javascript' src='".XOOPS_URL."/modules/tadtools/fancybox/source/helpers/jquery.fancybox-buttons.js'></script>
-    <script type='text/javascript' src='".XOOPS_URL."/modules/tadtools/fancybox/source/helpers/jquery.fancybox-media.js'></script>
-    <link rel='stylesheet' href='".XOOPS_URL."/modules/tadtools/fancybox/source/helpers/jquery.fancybox-thumbs.css' type='text/css' media='screen' />
-    <script type='text/javascript' src='".XOOPS_URL."/modules/tadtools/fancybox/source/helpers/jquery.fancybox-thumbs.js'></script>
+    <script type='text/javascript' src='".XOOPS_URL."/modules/tadtools/fancyBox/lib/jquery.mousewheel-3.0.6.pack.js'></script>
+    <link rel='stylesheet' href='".XOOPS_URL."/modules/tadtools/fancyBox/source/jquery.fancybox.css' type='text/css' media='screen' />
+    <script type='text/javascript' src='".XOOPS_URL."/modules/tadtools/fancyBox/source/jquery.fancybox.pack.js'></script>
+    <link rel='stylesheet' href='".XOOPS_URL."/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-buttons.css' type='text/css' media='screen' />
+    <script type='text/javascript' src='".XOOPS_URL."/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-buttons.js'></script>
+    <script type='text/javascript' src='".XOOPS_URL."/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-media.js'></script>
+    <link rel='stylesheet' href='".XOOPS_URL."/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-thumbs.css' type='text/css' media='screen' />
+    <script type='text/javascript' src='".XOOPS_URL."/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-thumbs.js'></script>
     <script type='text/javascript'>
     $(document).ready(function() {
       $('.fancybox-thumb').fancybox({
