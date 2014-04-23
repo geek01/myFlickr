@@ -30,7 +30,7 @@ function show_collection_album($collection_id=""){
     $main="
     <div class='container-fluid myflickr'>
       <div class='page-header'><h2>"._MD_MYFLICK_SMNAME3."</h2></div>
-        <div class='row-fluid'>
+        <div class='row-fluid clearfix'>
           {$photoColData}
         </div>
     </div>
@@ -72,7 +72,7 @@ function show_collection_sets($collection_id){
     $main="
     <div class='container-fluid myflickr'>
       <div class='page-header'><h2>{$colTitle}</h2></div>
-        <div class='row-fluid'>
+        <div class='row-fluid clearfix'>
           {$photoSetData}
         </div>
     </div>

@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_MYFLICK_NAME;
-$modversion['version'] = 1.00;
+$modversion['version'] = 1.10;
 $modversion['description'] = _MI_MYFLICK_DESC;
 $modversion['author'] = _MI_MYFLICK_AUTHOR;
 $modversion['credits'] = _MI_MYFLICK_CREDITS;

@@ -29,7 +29,7 @@ function show_photo($photoset_id,$page){
         $photoData .="
         <div class='photo'>
           <a href='".$f->buildPhotoURL($photo, 'large')."' title='{$photo['title']}' class='fancybox-thumb thumbnail' rel='gallery1'>
-          <img data-src='holder.js' alt='{$photo['title']}' src='".$f->buildPhotoURL($photo, 'small')."' />
+          <img data-src='holder.js' alt='{$photo['title']}' src='".$f->buildPhotoURL($photo, 'thumbnail')."' />
           <span class='title'>{$photo['title']}</span>
           </a>
         </div>";
@@ -115,13 +115,32 @@ function show_photo($photoset_id,$page){
     <div class='container-fluid myflickr'>
       <div class='page-header'><h2>{$info['title']}</h2></div>
         <div class='row-fluid'>
-          <div class='thumbnails'>
+          <div class='thumbnails clearfix'>
             {$photoData}
           </div>
         </div>
-      {$pagenation}
+      <div class='text-center'>{$pagenation}</div>
     </div>
     ";
+
+  return $main;
+}
+
+function get_sets_id(){
+  global $xoopsModuleConfig;
+  require_once "class/phpFlickr/phpFlickr.php";
+
+  $f = new phpFlickr($xoopsModuleConfig['key']);
+  $f->enableCache("fs", XOOPS_ROOT_PATH."/uploads/myflickr_cache");
+
+  $user_id=$xoopsModuleConfig['userid'];
+
+  $sets=$f->photosets_getList($user_id, NULL);
+
+  foreach ($sets['photoset'] as $set)
+  {
+    $main[]=$set['id'];
+  }
 
   return $main;
 }
@@ -138,6 +157,10 @@ $xoopsTpl->assign( "css" , "<link rel='stylesheet' type='text/css' media='screen
 switch($op){
 
 	default:
+  $sets_id=get_sets_id();
+  if (!in_array($sid, $sets_id)) {
+    redirect_header("index.php",3,_MD_MYFLICK_SIDERROR);
+  }
 	$main=show_photo($sid,$page);
 	break;
 }

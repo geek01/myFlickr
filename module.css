@@ -28,9 +28,9 @@
 	height: 160px;
 }
 .myflickr .photo {
-	width: 240px;
+	/*width: 240px;*/
 	float: left;
-	margin: 0 26px 26px 0;
+	margin: 0 20px 24px 0;
 	overflow: hidden;
 }
 .myflickr .photo a{
@@ -41,7 +41,10 @@
     display: block;
     font-style: italic;
     font-weight: bold;
-    padding: 8px 8px 0 0;
+    padding: 5px 5px 0 0;
+    font-size: 12px;
+    width: 100px;
+    overflow: hidden;
 }
 .myflickr .pagination {
     text-align: center;

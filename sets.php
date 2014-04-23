@@ -83,10 +83,10 @@ function show_all_sets($page){
     $main="
     <div class='container-fluid myflickr'>
       <div class='page-header'><h2>"._MD_MYFLICK_SMNAME2."</h2></div>
-        <div class='row-fluid'>
+        <div class='row-fluid clearfix'>
           {$photoSetData}
         </div>
-      {$pagenation}
+      <div class='text-center'>{$pagenation}</div>
     </div>
     ";
 
