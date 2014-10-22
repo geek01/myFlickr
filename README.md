@@ -12,6 +12,7 @@ Xoops Modules
 和一般Xoops模組安裝方式相同，安裝後至模組後台偏好設定：
 * 輸入Flickr User ID(在Flickr網址中類似 12345678@N05 的一段字串)
 * 輸入Flickr API key(至 http://www.flickr.com/services/api/keys/ 取得Flickr API Key)
+* Windows主機因為憑證問題，請在phpFlickr.php加入curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
 移至前台即可顯示Flickr的相片
 
