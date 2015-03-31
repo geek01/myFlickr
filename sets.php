@@ -15,7 +15,7 @@ function show_all_sets($page){
   $user_id=$xoopsModuleConfig['userid'];
   $per_page=$xoopsModuleConfig['number'];
 
-    $sets=$f->photosets_getList($user_id, NULL, $per_page, $page);
+    $sets=$f->photosets_getList($user_id, $page, $per_page);
     if ($f->getErrorCode() != NULL) {
       return "<div class='alert alert-error'>".$f->getErrorMsg()."</div>";
     }
@@ -23,7 +23,7 @@ function show_all_sets($page){
     $total = $sets['total'];
     $perpage = $sets['perpage'];
 
-      foreach ($sets['photoset'] as $set)
+      /*foreach ($sets['photoset'] as $set)
       {
         $info = $f->photosets_getInfo($set['id']);
         $photoy=$info;
@@ -32,6 +32,15 @@ function show_all_sets($page){
         $photoSetData .="
         <div class='sets'><a href='photo.php?sid=$set[id]'><img src='" . $f->buildPhotoURL($photoy, "small") . "' class='album-primary' /><div class='sets-title'>".$set['title']."</div></a>
         <div class='sets-info'><span><i class='icon-picture'></i> ".$info['photos']."</span><span><i class='icon-eye-open'></i> ".$info['count_views']."</span><span><i class='icon-time'></i> ".$upday."</span></div></div>
+        ";
+      }*/
+      
+      foreach ($sets['photoset'] as $set)
+      {
+        $upday= date("Y-m-d" ,$set['date_update']);
+        $photoSetData .="
+        <div class='sets'><a href='photo.php?sid={$set['id']}'><img src='" . $f->buildPhotoURL_Sets($set, "small") . "' class='album-primary' /><div class='sets-title'>".$set['title']."</div></a>
+        <div class='sets-info'><span class='glyphicon glyphicon-picture'></span> ".$set['photos']." <span class='glyphicon glyphicon-eye-open'></span> ".$set['count_views']." <span class='glyphicon glyphicon-time'></span> ".$upday."</div></div>
         ";
       }
 
