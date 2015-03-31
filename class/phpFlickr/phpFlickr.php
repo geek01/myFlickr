@@ -381,6 +381,33 @@ if ( !class_exists('phpFlickr') ) {
 			}
 			return $url;
 		}
+		
+		function buildPhotoURL_Sets ($photo, $size = "Medium") {
+			//receives an array (can use the individual photo data returned
+			//from an API call) and returns a URL (doesn't mean that the
+			//file size exists)
+			$sizes = array(
+				"square" => "_s",
+				"thumbnail" => "_t",
+				"small" => "_m",
+				"medium" => "",
+				"medium_640" => "_z",
+				"large" => "_b",
+				"original" => "_o"
+			);
+
+			$size = strtolower($size);
+			if (!array_key_exists($size, $sizes)) {
+				$size = "medium";
+			}
+
+			if ($size == "original") {
+				$url = "https://farm" . $photo['farm'] . ".static.flickr.com/" . $photo['server'] . "/" . $photo['primary'] . "_" . $photo['originalsecret'] . "_o" . "." . $photo['originalformat'];
+			} else {
+				$url = "https://farm" . $photo['farm'] . ".static.flickr.com/" . $photo['server'] . "/" . $photo['primary'] . "_" . $photo['secret'] . $sizes[$size] . ".jpg";
+			}
+			return $url;
+		}
 
 		function sync_upload ($photo, $title = null, $description = null, $tags = null, $is_public = null, $is_friend = null, $is_family = null) {
 			if ( function_exists('curl_init') ) {
