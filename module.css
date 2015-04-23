@@ -23,7 +23,7 @@
 .myflickr .sets-info {
 	color:#666666;
 }
-.myflickr .sets-info span{
+.myflickr .sets-info span {
 	margin: 0 10px 0 0;
 }
 .myflickr .album-primary {
@@ -36,8 +36,12 @@
 	margin: 0 20px 24px 0;
 	overflow: hidden;
 }
-.myflickr .photo a{
+.myflickr .photo a {
 	background-color: #FFFFFF;
+}
+.myflickr .photo img {
+    height: 75px !important;
+    width: 100px !important;
 }
 .myflickr .photo span.title {
     color: #333333;
