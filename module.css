@@ -16,6 +16,9 @@
 .myflickr .sets-title {
 	font-size: 15px;
 	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 240px;
 }
 .myflickr .sets-info {
 	color:#666666;
