@@ -1,12 +1,12 @@
 <?php
 /*-----------引入檔案區--------------*/
 include "header.php";
-include XOOPS_ROOT_PATH."/header.php";
-$xoopsOption['template_main'] = "myflickr_index_tpl.html";
+$xoopsOption['template_main'] = set_bootstrap("myflickr_index_tpl_b3.html");
+include_once XOOPS_ROOT_PATH . "/header.php";
 /*-----------function區--------------*/
 
 function show_favorite_photo($page){
-  global $xoopsModuleConfig;
+  global $xoopsModuleConfig, $xoopsTpl;
   require_once "class/phpFlickr/phpFlickr.php";
 
   $f = new phpFlickr($xoopsModuleConfig['key']);
@@ -26,9 +26,9 @@ function show_favorite_photo($page){
       foreach ($photos['photos']['photo'] as $photo)
       {
         $photoData .="
-        <div class='photo'>
+        <div class='col-lg-3 col-sm-4 col-xs-6 photo'>
           <a href='". $f->buildPhotoURL($photo, 'large')."' title='{$photo['title']}' class='fancybox-thumb thumbnail' rel='gallery1'>
-          <img data-src='holder.js' alt='$photo[title]' src='". $f->buildPhotoURL($photo, "thumbnail")."' />
+          <img data-src='holder.js' alt='$photo[title]' src='". $f->buildPhotoURL($photo, "small")."' />
           <span class='title'>{$photo['title']}</span>
           </a>
         </div>";
@@ -74,8 +74,8 @@ function show_favorite_photo($page){
     }
 
     $pagenation="
-    <div class='pagination'>
-     <ul>
+    <div class='row'>
+     <ul class='pagination'>
        {$back_pr}{$back_mr}{$pagenum}{$next_mr}{$next_pr}
      </ul>
     </div>";
@@ -112,7 +112,7 @@ function show_favorite_photo($page){
     </script>
     <div class='container-fluid myflickr'>
       <div class='page-header'><h2>"._MD_MYFLICK_SMNAME4."</h2></div>
-        <div class='row-fluid'>
+        <div class='row'>
           <div class='thumbnails clearfix'>
             {$photoData}
           </div>
@@ -121,16 +121,13 @@ function show_favorite_photo($page){
     </div>
     ";
 
-  return $main;
+  $xoopsTpl->assign( "main" , $main);
 }
 
 /*-----------執行動作判斷區----------*/
-$op=empty($_REQUEST['op'])?"":$_REQUEST['op'];
-$page = isset($_GET['page'])?$_GET['page'] : 1;
-
-$xoopsTpl->assign( "toolbar" , toolbar_bootstrap($interface_menu)) ;
-$xoopsTpl->assign( "bootstrap" , get_bootstrap()) ;
-$xoopsTpl->assign( "css" , "<link rel='stylesheet' type='text/css' media='screen' href='module.css' />") ;
+include_once $GLOBALS['xoops']->path( '/modules/system/include/functions.php' );
+$op = system_CleanVars($_REQUEST, 'op', '', 'string');
+$page = system_CleanVars($_REQUEST, 'page', 1, 'int');
 
 switch($op){
 
@@ -140,6 +137,7 @@ switch($op){
 }
 
 /*-----------秀出結果區--------------*/
-echo $main;
+$xoopsTpl->assign( "toolbar" , toolbar_bootstrap($interface_menu)) ;
+
 include_once XOOPS_ROOT_PATH.'/footer.php';
 ?>

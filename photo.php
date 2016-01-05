@@ -1,12 +1,12 @@
 <?php
 /*-----------引入檔案區--------------*/
 include "header.php";
-include XOOPS_ROOT_PATH."/header.php";
-$xoopsOption['template_main'] = "myflickr_index_tpl.html";
+$xoopsOption['template_main'] = set_bootstrap("myflickr_index_tpl_b3.html");
+include_once XOOPS_ROOT_PATH . "/header.php";
 /*-----------function區--------------*/
 
 function show_photo($photoset_id,$page){
-  global $xoopsModuleConfig;
+  global $xoopsModuleConfig, $xoopsTpl;
   require_once "class/phpFlickr/phpFlickr.php";
 
   $f = new phpFlickr($xoopsModuleConfig['key']);
@@ -27,10 +27,10 @@ function show_photo($photoset_id,$page){
       foreach ($photos['photoset']['photo'] as $photo)
       {
         $photoData .="
-        <div class='photo'>
+        <div class='col-lg-3 col-sm-4 col-xs-6 photo'>
           <a href='".$f->buildPhotoURL($photo, 'large')."' title='{$photo['title']}' class='fancybox-thumb thumbnail' rel='gallery1'>
-          <img data-src='holder.js' alt='{$photo['title']}' src='".$f->buildPhotoURL($photo, 'thumbnail')."' />
-          <span class='title'>{$photo['title']}</span>
+          <img data-src='holder.js' alt='{$photo['title']}' src='".$f->buildPhotoURL($photo, 'small')."' />
+          <div class='title'>{$photo['title']}</div>
           </a>
         </div>";
       }
@@ -76,8 +76,8 @@ function show_photo($photoset_id,$page){
     //$pagecount="<li class='disabled'><a href='javascript: void(0)'>共{$pTotal}頁，第{$page}頁</a></li>";
 
     $pagenation="
-    <div class='pagination'>
-     <ul>
+    <div class='text-center'>
+     <ul class='pagination'>
        {$back_pr}{$back_mr}{$pagenum}{$next_mr}{$next_pr}
      </ul>
     </div>";
@@ -112,18 +112,18 @@ function show_photo($photoset_id,$page){
       });
     });
     </script>
-    <div class='container-fluid myflickr'>
-      <div class='page-header'><h2>{$info['title']}</h2></div>
-        <div class='row-fluid'>
+    <div class='myflickr'>
+      <div class='page-header'><h2>{$info['title']['_content']}</h2></div>
+        <div class='row'>
           <div class='thumbnails clearfix'>
             {$photoData}
           </div>
         </div>
-      <div class='text-center'>{$pagenation}</div>
+      <div class='row'>{$pagenation}</div>
     </div>
     ";
 
-  return $main;
+  $xoopsTpl->assign( "main" , $main);
 }
 
 function get_sets_id(){
@@ -146,13 +146,10 @@ function get_sets_id(){
 }
 
 /*-----------執行動作判斷區----------*/
-$op=empty($_REQUEST['op'])?"":$_REQUEST['op'];
-$sid = isset($_GET['sid'])?$_GET['sid'] : "";
-$page = isset($_GET['page'])?$_GET['page'] : 1;
-
-$xoopsTpl->assign( "toolbar" , toolbar_bootstrap($interface_menu)) ;
-$xoopsTpl->assign( "bootstrap" , get_bootstrap()) ;
-$xoopsTpl->assign( "css" , "<link rel='stylesheet' type='text/css' media='screen' href='module.css' />") ;
+include_once $GLOBALS['xoops']->path( '/modules/system/include/functions.php' );
+$op = system_CleanVars($_REQUEST, 'op', '', 'string');
+$sid = system_CleanVars($_REQUEST, 'sid', '', 'int');
+$page = system_CleanVars($_REQUEST, 'page', 1, 'int');
 
 switch($op){
 
@@ -161,11 +158,12 @@ switch($op){
   if (!in_array($sid, $sets_id)) {
     redirect_header("index.php",3,_MD_MYFLICK_SIDERROR);
   }
-	$main=show_photo($sid,$page);
+	show_photo($sid,$page);
 	break;
 }
 
 /*-----------秀出結果區--------------*/
-echo $main;
+$xoopsTpl->assign( "toolbar" , toolbar_bootstrap($interface_menu));
+
 include_once XOOPS_ROOT_PATH.'/footer.php';
 ?>

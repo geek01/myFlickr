@@ -105,8 +105,8 @@ $modversion['config'][$i]['default']	= '30';
 //---樣板設定---//
 $modversion['templates'] = array();
 $i=1;
-$modversion['templates'][$i]['file'] = 'myflickr_index_tpl.html';
-$modversion['templates'][$i]['description'] = 'myflickr_index_tpl.html';
+$modversion['templates'][$i]['file'] = 'myflickr_index_tpl_b3.html';
+$modversion['templates'][$i]['description'] = 'myflickr_index_tpl_b3.html';
 
 
 //---評論---//
